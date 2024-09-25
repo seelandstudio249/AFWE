@@ -1,0 +1,16 @@
+1. Move this folder to your project
+2. Delete whatever inside this folder(Add on plugins)
+3. Upack DissonanceVoiceForFishNet-main and move all files into this folder(Add on plugins)
+4. Drag and drop the prefab into the scene done
+
+Note
+1. If the scripts are all missing in the prefab here whats inside
+	- Dissonance Setup
+		- Dissonance Comms
+		- Dissonance Fish Net Comms
+
+	- Dissonance Chat Room
+		- Voice Broad Cast Trigger
+		- Voice Receipt Trigger
+
+2. In case u hitting compilation/dependencies errors for DissonanceVoiceForFishNet-main, then again delete everything u just unpacked and google "Dissonance For Fish Net", and download the plugin
