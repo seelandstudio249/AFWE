@@ -7,12 +7,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+[Serializable]
+public enum PlayerType {
+    //Host,
+    //Client
+
+    MT,
+    Electrician,
+    FO
+}
+
+[Serializable]
+public class PlayerData {
+    public int playerId;
+    public PlayerType playerType;
+    public NetworkConnection clientConnection;
+}
+
 public class ManagerNetworkingBaseScript : NetworkBehaviour {
-    [Serializable]
-    public class PlayerData {
-        public int playerId;
-        public NetworkConnection clientConnection;
-    }
+
 
     [SerializeField] protected ManagerBaseScript managerScript;
     [SerializeField] protected List<PlayerData> playersList = new List<PlayerData>();
@@ -34,6 +47,7 @@ public class ManagerNetworkingBaseScript : NetworkBehaviour {
         base.OnStartClient();
         AddingNewPlayerToListServer(new PlayerData {
             playerId = InstanceFinder.ClientManager.Connection.ClientId,
+            playerType = Login.instance.playerType,
             clientConnection = InstanceFinder.ClientManager.Connection
         });
     }

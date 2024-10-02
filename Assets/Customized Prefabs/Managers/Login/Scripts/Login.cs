@@ -25,8 +25,10 @@ public class Login : ManagerBaseScript {
 
     [Header("Login Panel")]
     [SerializeField] GameObject loginPanel;
-    [SerializeField] MRButtonClass hostServerButton;
-    [SerializeField] MRButtonClass joinAsClientButton;
+    //[SerializeField] MRButtonClass hostServerButton;
+    [SerializeField] MRButtonClass loginButton;
+    [SerializeField] MRTKTMPInputField usernameInputField;
+    [SerializeField] TMP_Text errorText;
 
     [Header("Loading Panel")]
     [SerializeField] GameObject loadingPanel;
@@ -66,9 +68,17 @@ public class Login : ManagerBaseScript {
 
     [Header("Game Mode")]
     public GamePlayType gameModeLocal;
+
+    [Header("Player Type")]
+    public PlayerType playerType;
+
+    public static Login instance;
+
     ManagersControl managerControl;
 
     protected override void Awake() {
+        if (instance == null) { instance = this; }
+
         managerControl = GetComponent<ManagersControl>();
         networkDiscovery.ServerFoundCallback += AddingEndPoint;
 
@@ -79,11 +89,25 @@ public class Login : ManagerBaseScript {
         multiplayerModeButton.button.OnClicked.AddListener(delegate {
             PanelActivation(loginPanel, true);
         });
-        hostServerButton.button.OnClicked.AddListener(delegate {
-            StartServer();
-        });
-        joinAsClientButton.button.OnClicked.AddListener(delegate {
-            SearchServer();
+        //hostServerButton.button.OnClicked.AddListener(delegate {
+        //    StartServer();
+        //});
+        loginButton.button.OnClicked.AddListener(delegate {
+            errorText.text = "";
+            loginButton.button.gameObject.SetActive(false);
+            switch (usernameInputField.text.ToUpper()) {
+                case "MT":
+                case "FO":
+                case "E":
+                SearchServer();
+                break;
+                default:
+                errorText.text = "User doesn't exist";
+                loginButton.button.gameObject.SetActive(true);
+                break;
+            }
+            //playerType = PlayerType.MT;
+            //SearchServer();
         });
         searchAgainButton.button.OnClicked.AddListener(delegate {
             SearchServer();
@@ -106,7 +130,7 @@ public class Login : ManagerBaseScript {
         if (isServer) {
             StartServer();
         } else {
-            PanelActivation(modePanel, true);
+            PanelActivation(loginPanel, true);
         }
     }
 
@@ -121,14 +145,17 @@ public class Login : ManagerBaseScript {
 
     void SearchServer() {
         networkDiscovery.SearchForServers();
-        PanelActivation(loadingPanel);
+        //PanelActivation(loadingPanel);
+        errorText.text = "Joining...";
         _endPoints.Clear();
         splittedEndPoints.Clear();
         gameModeLocal = GamePlayType.Multiplayer;
     }
 
     public void FailedServerSearch() {
-        PanelActivation(errorPanel);
+        //PanelActivation(errorPanel);
+        errorText.text = "Failed To Connect To Server";
+        loginButton.button.gameObject.SetActive(true);
     }
 
     void PanelActivation(GameObject panel = null, bool activationStatus = true) {
