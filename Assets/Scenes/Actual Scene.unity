@@ -200,8 +200,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2189928700390300475, guid: c625e6a3a8f316c46af2366ae21c1208, type: 3}
+      propertyPath: _scenePathHash
+      value: 1215274238
+      objectReference: {fileID: 0}
+    - target: {fileID: 2189928700390300475, guid: c625e6a3a8f316c46af2366ae21c1208, type: 3}
       propertyPath: <SceneId>k__BackingField
-      value: 5219563108156883280
+      value: 5219563109847423273
       objectReference: {fileID: 0}
     - target: {fileID: 7068302585022938291, guid: c625e6a3a8f316c46af2366ae21c1208, type: 3}
       propertyPath: managersList.Array.data[0]
@@ -616,21 +620,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 461356438345012989, guid: d13a97f9a950a2448804f480edbb83de, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 536628063395182953, guid: d13a97f9a950a2448804f480edbb83de, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 4555126539802912994, guid: d13a97f9a950a2448804f480edbb83de, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 8808397522344710869, guid: d13a97f9a950a2448804f480edbb83de, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 4706954922283154298, guid: d13a97f9a950a2448804f480edbb83de, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 4541968244806706579, guid: d13a97f9a950a2448804f480edbb83de, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: d13a97f9a950a2448804f480edbb83de, type: 3}

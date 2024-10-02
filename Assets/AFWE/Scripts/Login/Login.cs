@@ -138,7 +138,8 @@ public class Login : ManagerBaseScript {
         _endPoints.Add(endPoint.Address.ToString());
         //splittedEndPoints = ListSplit(_endPoints);
         if (isDirectJoinServer) {
-            if (splittedEndPoints[currentPage][0] != null) JoinServer(splittedEndPoints[currentPage][0]);
+            //if (splittedEndPoints[currentPage][0] != null) JoinServer(splittedEndPoints[currentPage][0]);
+            if (_endPoints[0] != null) JoinServer(_endPoints[0]);
             PanelActivation(null);
         } else {
             StartCoroutine(AssigningButton(0));

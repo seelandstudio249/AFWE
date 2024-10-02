@@ -6266,8 +6266,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3514586478437765873}
-  - {fileID: 7206544292046075364}
-  - {fileID: 8439643963611392131}
   m_Father: {fileID: 8740630432340602670}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3835912442711244168
@@ -6874,6 +6872,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5749105649658424773}
+  - {fileID: 7206544292046075364}
+  - {fileID: 8439643963611392131}
   m_Father: {fileID: 5474140868189392882}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5698742399940910226
@@ -8859,7 +8859,7 @@ Transform:
   - {fileID: 4246661376192596468}
   - {fileID: 6552595930052507087}
   - {fileID: 7414443495857299269}
-  m_Father: {fileID: 5474140868189392882}
+  m_Father: {fileID: 3514586478437765873}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7569951133683262177
 GameObject:
@@ -9524,7 +9524,7 @@ RectTransform:
   m_Children:
   - {fileID: 4576905287401564853}
   - {fileID: 5482206372384715947}
-  m_Father: {fileID: 5474140868189392882}
+  m_Father: {fileID: 3514586478437765873}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -10818,7 +10818,7 @@ MonoBehaviour:
   _teleportThreshold: 1
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 1215274238
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!114 &931200013476750851

@@ -37,6 +37,10 @@ public class HomePage : ManagerBaseScript {
             PanelActivation(taskPanel);
         });
 
+        AssignGameMode += delegate {
+            userName.text = "Username: " + Login.instance.playerType.ToString();
+        };
+
         pinButton.button.OnClicked.AddListener(delegate {
             followScript.enabled = !followScript.enabled;
             switch (followScript.enabled) {
