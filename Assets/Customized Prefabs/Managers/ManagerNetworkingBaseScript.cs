@@ -25,8 +25,6 @@ public class PlayerData {
 }
 
 public class ManagerNetworkingBaseScript : NetworkBehaviour {
-
-
     [SerializeField] protected ManagerBaseScript managerScript;
     [SerializeField] protected List<PlayerData> playersList = new List<PlayerData>();
 
