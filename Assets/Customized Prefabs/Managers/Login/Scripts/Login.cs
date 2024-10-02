@@ -97,8 +97,15 @@ public class Login : ManagerBaseScript {
             loginButton.button.gameObject.SetActive(false);
             switch (usernameInputField.text.ToUpper()) {
                 case "MT":
+                playerType = PlayerType.MT;
+                SearchServer();
+                break;
                 case "FO":
+                playerType = PlayerType.FO;
+                SearchServer();
+                break;
                 case "E":
+                playerType = PlayerType.E;
                 SearchServer();
                 break;
                 default:
@@ -106,8 +113,6 @@ public class Login : ManagerBaseScript {
                 loginButton.button.gameObject.SetActive(true);
                 break;
             }
-            //playerType = PlayerType.MT;
-            //SearchServer();
         });
         searchAgainButton.button.OnClicked.AddListener(delegate {
             SearchServer();
@@ -145,7 +150,6 @@ public class Login : ManagerBaseScript {
 
     void SearchServer() {
         networkDiscovery.SearchForServers();
-        //PanelActivation(loadingPanel);
         errorText.text = "Joining...";
         _endPoints.Clear();
         splittedEndPoints.Clear();
@@ -153,7 +157,6 @@ public class Login : ManagerBaseScript {
     }
 
     public void FailedServerSearch() {
-        //PanelActivation(errorPanel);
         errorText.text = "Failed To Connect To Server";
         loginButton.button.gameObject.SetActive(true);
     }

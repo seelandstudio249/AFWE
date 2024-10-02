@@ -13,7 +13,7 @@ public enum PlayerType {
     //Client
 
     MT,
-    Electrician,
+    E,
     FO
 }
 
