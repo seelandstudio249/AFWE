@@ -9888,35 +9888,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networkingScript: {fileID: 8513093032624091814}
   managerUI: {fileID: 4992060352670064611}
-  modePanel: {fileID: 0}
-  singlePlayerModeButton:
-    button: {fileID: 0}
-    buttonText: {fileID: 0}
-  multiplayerModeButton:
-    button: {fileID: 0}
-    buttonText: {fileID: 0}
   loginPanel: {fileID: 5655128141055170499}
   loginButton:
     button: {fileID: 8225798299121239740}
     buttonText: {fileID: 0}
   usernameInputField: {fileID: 9104337743416246509}
   errorText: {fileID: 6529210056032387133}
-  loadingPanel: {fileID: 0}
-  roomPanel: {fileID: 0}
-  joinRoomButtons:
-  - button: {fileID: 0}
-    buttonText: {fileID: 0}
-  - button: {fileID: 0}
-    buttonText: {fileID: 0}
-  - button: {fileID: 0}
-    buttonText: {fileID: 0}
-  errorPanel: {fileID: 0}
-  searchAgainButton:
-    button: {fileID: 0}
-    buttonText: {fileID: 0}
-  cancelSearchingButton:
-    button: {fileID: 0}
-    buttonText: {fileID: 0}
   isServer: 0
   isDirectJoinServer: 1
   networkDiscovery: {fileID: 6659997266663697030}
@@ -9937,7 +9914,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c78a75360ce12a146b7d5e64c8b87ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  managersList: []
+  managersList:
+  - {fileID: 0}
 --- !u!1 &8473970223488693665
 GameObject:
   m_ObjectHideFlags: 0
@@ -10840,7 +10818,7 @@ MonoBehaviour:
   _teleportThreshold: 1
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 0
+  _scenePathHash: 1215274238
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 0
 --- !u!114 &931200013476750851

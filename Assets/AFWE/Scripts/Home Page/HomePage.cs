@@ -21,6 +21,13 @@ public class HomePage : ManagerBaseScript {
     [SerializeField] MRButtonClass returnFromTaskButton;
     #endregion
 
+    #region Specific Task Page
+    [Header("Specific Task Page Settings")]
+    [SerializeField] GameObject specificTaskPanel;
+    [SerializeField] MRButtonClass returnFromSpecificTaskButton;
+    [SerializeField] MRButtonClass confirmButton;
+    #endregion
+
     protected override void Awake() {
         base.Awake();
 
@@ -44,6 +51,15 @@ public class HomePage : ManagerBaseScript {
 
         returnFromTaskButton.button.OnClicked.AddListener(delegate {
             PanelActivation(homePanel);
+        });
+
+        confirmButton.button.OnClicked.AddListener(delegate {
+            // Send Signal To Server/Backend
+            PanelActivation(taskPanel);
+        });
+
+        returnFromSpecificTaskButton.button.OnClicked.AddListener(delegate {
+            PanelActivation(taskPanel);
         });
     }
 
