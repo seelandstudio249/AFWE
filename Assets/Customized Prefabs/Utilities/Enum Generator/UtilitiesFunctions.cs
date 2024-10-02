@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ListChunker {
     public static List<List<T>> SplitList<T>(List<T> list, int chunkSize) {
+        Debug.LogError(list.Count);
         List<List<T>> chunks = new List<List<T>>();
         int totalChunks = (list.Count + chunkSize - 1) / chunkSize; // calculate number of chunks
 
