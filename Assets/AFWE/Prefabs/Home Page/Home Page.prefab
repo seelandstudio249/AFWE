@@ -3724,8 +3724,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.35, y: 0.25, z: 0.05}
-  m_Center: {x: 0.05, y: 0.1, z: 0.025}
+  m_Size: {x: 0.35, y: 0.35, z: 0.01}
+  m_Center: {x: 0.049999997, y: 0.045, z: 0.01}
 --- !u!114 &8256205262256495971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9812,7 +9812,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: -0}
-  m_SizeDelta: {x: 149, y: -111.32}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &7807921401982448398
 MonoBehaviour:
@@ -9834,7 +9834,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 143, y: 32}
+  m_CellSize: {x: 163, y: 32}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 1
@@ -12630,7 +12630,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6836881325706987563
 Transform:
   m_ObjectHideFlags: 0
@@ -13850,7 +13850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &334406041875037620
 Transform:
   m_ObjectHideFlags: 0

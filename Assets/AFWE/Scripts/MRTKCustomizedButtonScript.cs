@@ -11,4 +11,8 @@ public class TaskButtonClass : MRButtonClass {
 public class MRTKCustomizedButtonScript : MonoBehaviour
 {
     public TaskButtonClass buttonClass;
+
+    public void buttonClassIconActivation() {
+        buttonClass.sprite.SetActive(!buttonClass.sprite.active);
+    }
 }
