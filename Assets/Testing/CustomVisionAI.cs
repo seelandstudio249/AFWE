@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 using Newtonsoft.Json;
 
 public class CustomVisionAI : MonoBehaviour {
-    private string apiUrl = "https://testafwewcvai-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/a0c61038-08c9-4aee-a0fc-c251d736bc7e/detect/iterations/Iteration1/url";
+    private string apiUrl = "https://testafwewcvai-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/a0c61038-08c9-4aee-a0fc-c251d736bc7e/detect/iterations/Iteration4/url";
 
     public GameObject quad; // Assign your quad here
     public Material lineMaterial; // Assign a material for the LineRenderer
@@ -25,7 +25,7 @@ public class CustomVisionAI : MonoBehaviour {
 
     IEnumerator PostRequest(string url) {
         // Create a JSON string for the body
-        string jsonBody = "{\"Url\": \"https://hobbylink.tv/wp-content/uploads/2010/11/img_5497-1024x683.jpg\"}";
+        string jsonBody = "{\"Url\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtfpoCDSk8cNMUo98EHR-be8CljB7RxEnELQ&s\"}";
 
         // Convert the JSON string to a byte array
         byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(jsonBody);
