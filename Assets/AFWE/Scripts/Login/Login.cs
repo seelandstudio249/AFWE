@@ -67,25 +67,21 @@ public class Login : ManagerBaseScript {
         loginButton.button.OnClicked.AddListener(delegate {
             errorText.text = "";
             loginButton.button.gameObject.SetActive(false);
-            HomePage homePage = managersControl.GetSpecificManagerScript<HomePage>();
 
             switch (usernameInputField.text.ToUpper()) {
                 case "MT":
                 playerType = PlayerType.MT;
                 showHomePageUserDetails.Invoke();
-                homePage.gameObject.SetActive(true);
                 PanelActivation(null);
                 break;
                 case "FO":
                 playerType = PlayerType.FO;
                 showHomePageUserDetails.Invoke();
-                homePage.gameObject.SetActive(true);
                 PanelActivation(null);
                 break;
                 case "E":
                 playerType = PlayerType.E;
                 showHomePageUserDetails.Invoke();
-                homePage.gameObject.SetActive(true);
                 PanelActivation(null);
                 break;
                 default:
@@ -119,15 +115,17 @@ public class Login : ManagerBaseScript {
 
     void SearchServer() {
         networkDiscovery.SearchForServers();
-        errorText.text = "Joining...";
+        errorText.text = "Loading...";
         _endPoints.Clear();
         splittedEndPoints.Clear();
         gameModeLocal = GamePlayType.Multiplayer;
     }
 
-    public void FailedServerSearch() {
+    public IEnumerator FailedServerSearch() {
         errorText.text = "Failed To Connect To Server";
-        loginButton.button.gameObject.SetActive(true);
+        //loginButton.button.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2);
+        SearchServer();
     }
 
     void PanelActivation(GameObject panel = null, bool activationStatus = true) {
