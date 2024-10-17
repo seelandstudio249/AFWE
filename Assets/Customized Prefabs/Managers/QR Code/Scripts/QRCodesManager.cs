@@ -27,7 +27,6 @@ public class QRCodeEventArgs<TData> : EventArgs {
 
 public class QRCodesManager : ManagerBaseScript {
     [Tooltip("Offset of the rotation of ContentContainer transform on top of QR code")]
-    public static QRCodesManager Instance;
     public Vector3 qrRotationOffset;
 
     public bool IsTrackerRunning { get; private set; }
@@ -79,10 +78,6 @@ public class QRCodesManager : ManagerBaseScript {
         }
     }
     protected override void Awake() {
-        if (Instance == null) {
-            Instance = this;
-        }
-
         base.Awake();
 
         startScanningButton.button.OnClicked.AddListener(delegate {
@@ -111,7 +106,6 @@ public class QRCodesManager : ManagerBaseScript {
             qrTracker.Removed += QRCodeWatcher_Removed;
             qrTracker.EnumerationCompleted += QRCodeWatcher_EnumerationCompleted;
         } catch (Exception ex) {
-            //DebugLog.instance.DebugLogRegular("QRCodesManager : exception starting the tracker " + ex.ToString());
         }
     }
 
@@ -131,13 +125,12 @@ public class QRCodesManager : ManagerBaseScript {
             timeSet = false;
         }
         if (qrTracker != null && !IsTrackerRunning) {
-            //DebugLog.instance.DebugLogRegular("QR Tracking Started");
             try {
                 qrTracker.Start();
                 IsTrackerRunning = true;
                 QRCodesTrackingStateChanged?.Invoke(this, true);
             } catch (Exception ex) {
-                //DebugLog.instance.DebugLogRegular("QRCodesManager starting QRCodeWatcher Exception:" + ex.ToString());
+
             }
         }
     }
@@ -203,7 +196,7 @@ public class QRCodesManager : ManagerBaseScript {
     }
 
     private void QRCodeWatcher_EnumerationCompleted(object sender, object e) {
-        //Debug.Log("QRCodesManager QrTracker_EnumerationCompleted");
+
     }
 
     private void Update() {
@@ -214,8 +207,6 @@ public class QRCodesManager : ManagerBaseScript {
         if (qrTracker == null && capabilityInitialized && IsSupported) {
             if (accessStatus == QRCodeWatcherAccessStatus.Allowed) {
                 SetupQRTracking();
-            } else {
-                //DebugLog.instance.DebugLogRegular("Capability access status : " + accessStatus);
             }
         }
     }

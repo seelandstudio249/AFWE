@@ -13,25 +13,33 @@ public class QRCode : MonoBehaviour {
     public bool isDebug;
     bool isMoved = false;
 
+    ManagersControl managersControl;
+    QRCodesManager qrCodesManager;
+
+    private void Awake() {
+        managersControl = FindObjectOfType<ManagersControl>();
+        qrCodesManager = managersControl.GetSpecificManagerScript<QRCodesManager>();
+    }
+
     void Update() {
         CompareQRCode(qrCode, this.transform);
     }
 
     public void CompareQRCode(Microsoft.MixedReality.QR.QRCode _qrCode, Transform _transform) {
-        int diff = DateTimeOffset.Compare(_qrCode.LastDetectedTime, QRCodesManager.Instance.startScanningTime);
-        if (diff >= 0 && _qrCode.Data.ToString() == QRCodesManager.Instance.qrCodeString) {
+        int diff = DateTimeOffset.Compare(_qrCode.LastDetectedTime, qrCodesManager.startScanningTime);
+        if (diff >= 0 && _qrCode.Data.ToString() == qrCodesManager.qrCodeString) {
             StartCoroutine(ShowContent(_transform));
         }
     }
 
     public IEnumerator ShowContent(Transform _anchorLocation) {
         if(!isMoved) {
-            QRCodesManager.Instance.containerGameObject.transform.localPosition = _anchorLocation.position;
-            QRCodesManager.Instance.containerGameObject.transform.rotation = _anchorLocation.rotation;
-            QRCodesManager.Instance.containerGameObject.transform.Rotate(QRCodesManager.Instance.qrRotationOffset, Space.Self);
+            qrCodesManager.containerGameObject.transform.localPosition = _anchorLocation.position;
+            qrCodesManager.containerGameObject.transform.rotation = _anchorLocation.rotation;
+            qrCodesManager.containerGameObject.transform.Rotate(qrCodesManager.qrRotationOffset, Space.Self);
             yield return new WaitForSeconds(1);
             isMoved = true;
-            QRCodesManager.Instance.StopQRTracking();
+            qrCodesManager.StopQRTracking();
         }
     }
 }

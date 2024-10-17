@@ -31,8 +31,11 @@ public class ManagerNetworkingBaseScript : NetworkBehaviour {
     protected Action serverDetectPlayerJoin;
     protected Action<int> serverDetectPlayerLeft;
 
+    ManagersControl managerControl;
+
     protected virtual void Awake() {
         InstanceFinder.ServerManager.OnRemoteConnectionState += OnClientConnectionStateChanged;
+        managerControl = FindAnyObjectByType<ManagersControl>();
     }
 
     protected virtual void OnClientConnectionStateChanged(NetworkConnection fishNetConnection, RemoteConnectionStateArgs newState) {
@@ -45,7 +48,7 @@ public class ManagerNetworkingBaseScript : NetworkBehaviour {
         base.OnStartClient();
         AddingNewPlayerToListServer(new PlayerData {
             playerId = InstanceFinder.ClientManager.Connection.ClientId,
-            playerType = Login.instance.playerType,
+            playerType = managerControl.loginScript.playerType,
             clientConnection = InstanceFinder.ClientManager.Connection
         });
     }

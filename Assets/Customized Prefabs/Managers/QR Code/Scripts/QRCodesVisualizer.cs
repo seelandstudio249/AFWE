@@ -27,15 +27,23 @@ public class QRCodesVisualizer : MonoBehaviour {
 
     private Queue<ActionData> pendingActions = new Queue<ActionData>();
 
+    ManagersControl managersControl;
+    QRCodesManager qrCodeManager;
+
+    private void Awake() {
+        managersControl = FindObjectOfType<ManagersControl>();
+        qrCodeManager = managersControl.GetSpecificManagerScript<QRCodesManager>();
+    }
+
     // Use this for initialization
     void Start() {
         //Debug.Log("QRCodesVisualizer start");
         qrCodesObjectsList = new SortedDictionary<System.Guid, GameObject>();
 
-        QRCodesManager.Instance.QRCodesTrackingStateChanged += Instance_QRCodesTrackingStateChanged;
-        QRCodesManager.Instance.QRCodeAdded += Instance_QRCodeAdded;
-        QRCodesManager.Instance.QRCodeUpdated += Instance_QRCodeUpdated;
-        QRCodesManager.Instance.QRCodeRemoved += Instance_QRCodeRemoved;
+        qrCodeManager.QRCodesTrackingStateChanged += Instance_QRCodesTrackingStateChanged;
+        qrCodeManager.QRCodeAdded += Instance_QRCodeAdded;
+        qrCodeManager.QRCodeUpdated += Instance_QRCodeUpdated;
+        qrCodeManager.QRCodeRemoved += Instance_QRCodeRemoved;
         if (qrCodePrefab == null) {
             throw new System.Exception("Prefab not assigned");
         }
@@ -47,24 +55,18 @@ public class QRCodesVisualizer : MonoBehaviour {
     }
 
     public void Instance_QRCodeAdded(object sender, QRCodeEventArgs<Microsoft.MixedReality.QR.QRCode> e) {
-        //Debug.Log("QRCodesVisualizer Instance_QRCodeAdded");
-
         lock (pendingActions) {
             pendingActions.Enqueue(new ActionData(ActionData.Type.Added, e.Data));
         }
     }
 
     public void Instance_QRCodeUpdated(object sender, QRCodeEventArgs<Microsoft.MixedReality.QR.QRCode> e) {
-        //Debug.Log("QRCodesVisualizer Instance_QRCodeUpdated");
-
         lock (pendingActions) {
             pendingActions.Enqueue(new ActionData(ActionData.Type.Updated, e.Data));
         }
     }
 
     public void Instance_QRCodeRemoved(object sender, QRCodeEventArgs<Microsoft.MixedReality.QR.QRCode> e) {
-        //Debug.Log("QRCodesVisualizer Instance_QRCodeRemoved");
-
         lock (pendingActions) {
             pendingActions.Enqueue(new ActionData(ActionData.Type.Removed, e.Data));
         }

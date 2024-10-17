@@ -28,6 +28,8 @@ public class HomePage : ManagerBaseScript {
     [SerializeField] MRButtonClass confirmButton;
     #endregion
 
+    [SerializeField] ManagersControl managerControlScript;
+
     protected override void Awake() {
         base.Awake();
 
@@ -37,8 +39,9 @@ public class HomePage : ManagerBaseScript {
             PanelActivation(taskPanel);
         });
 
-        AssignGameMode += delegate {
-            userName.text = "Username: " + Login.instance.playerType.ToString();
+        managerControlScript.loginScript.showHomePageUserDetails += delegate {
+            userName.text = "Username: " + managerControlScript.loginScript.playerType.ToString();
+            ManagerActivation(true);
         };
 
         pinButton.button.OnClicked.AddListener(delegate {

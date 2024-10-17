@@ -23,10 +23,6 @@ public class Login : ManagerBaseScript {
     [SerializeField] MRButtonClass loginButton;
     [SerializeField] MRTKTMPInputField usernameInputField;
     [SerializeField] TMP_Text errorText;
-
-    //[Header("Ip Address Selection")]
-    //[SerializeField] GameObject roomPanel;
-    //[SerializeField] MRButtonClass[] joinRoomButtons;
     #endregion
 
     int currentPage = 0;
@@ -57,30 +53,40 @@ public class Login : ManagerBaseScript {
     [Header("Player Type")]
     public PlayerType playerType;
 
-    public static Login instance;
+    [SerializeField] ManagersControl managersControl;
+    QRCodesManager qrCodeManager;
 
-    ManagersControl managerControl;
+    #region Login Actions
+    public Action showHomePageUserDetails;
+    #endregion
 
     protected override void Awake() {
-        if (instance == null) { instance = this; }
+        qrCodeManager = managersControl.GetSpecificManagerScript<QRCodesManager>();
 
-        managerControl = GetComponent<ManagersControl>();
         networkDiscovery.ServerFoundCallback += AddingEndPoint;
         loginButton.button.OnClicked.AddListener(delegate {
             errorText.text = "";
             loginButton.button.gameObject.SetActive(false);
+            HomePage homePage = managersControl.GetSpecificManagerScript<HomePage>();
+
             switch (usernameInputField.text.ToUpper()) {
                 case "MT":
                 playerType = PlayerType.MT;
-                SearchServer();
+                showHomePageUserDetails.Invoke();
+                homePage.gameObject.SetActive(true);
+                PanelActivation(null);
                 break;
                 case "FO":
                 playerType = PlayerType.FO;
-                SearchServer();
+                showHomePageUserDetails.Invoke();
+                homePage.gameObject.SetActive(true);
+                PanelActivation(null);
                 break;
                 case "E":
                 playerType = PlayerType.E;
-                SearchServer();
+                showHomePageUserDetails.Invoke();
+                homePage.gameObject.SetActive(true);
+                PanelActivation(null);
                 break;
                 default:
                 errorText.text = "User doesn't exist";
@@ -96,13 +102,10 @@ public class Login : ManagerBaseScript {
 
     #region Mode Selection
     void InitialSetup() {
-        //foreach (MRButtonClass child in joinRoomButtons) {
-        //    child.button.gameObject.SetActive(false);
-        //}
         if (isServer) {
             StartServer();
         } else {
-            PanelActivation(loginPanel, true);
+            SearchServer();
         }
     }
 
@@ -111,7 +114,7 @@ public class Login : ManagerBaseScript {
         splittedEndPoints.Clear();
         InstanceFinder.ServerManager.StartConnection(port);
         networkDiscovery.AdvertiseServer();
-        managerControl.AssignGameMode(GamePlayType.Multiplayer);
+        managersControl.AssignGameMode(GamePlayType.Multiplayer);
     }
 
     void SearchServer() {
@@ -129,16 +132,14 @@ public class Login : ManagerBaseScript {
 
     void PanelActivation(GameObject panel = null, bool activationStatus = true) {
         loginPanel.SetActive(false);
-        //roomPanel.SetActive(false);
+        errorText.text = "";
         if (panel) panel.SetActive(activationStatus);
     }
 
     void AddingEndPoint(IPEndPoint endPoint) {
         if (_endPoints.Contains(endPoint.Address.ToString())) return;
         _endPoints.Add(endPoint.Address.ToString());
-        //splittedEndPoints = ListSplit(_endPoints);
         if (isDirectJoinServer) {
-            //if (splittedEndPoints[currentPage][0] != null) JoinServer(splittedEndPoints[currentPage][0]);
             if (_endPoints[0] != null) JoinServer(_endPoints[0]);
             PanelActivation(null);
         } else {
@@ -148,19 +149,9 @@ public class Login : ManagerBaseScript {
 
     IEnumerator AssigningButton(float secondsToWait) {
         yield return new WaitForSeconds(secondsToWait);
-        //foreach (MRButtonClass child in joinRoomButtons) {
-        //    child.button.gameObject.SetActive(false);
-        //}
         if (splittedEndPoints.Count > 0 && splittedEndPoints[currentPage].Count > 0) {
             for (int i = 0; i < splittedEndPoints[currentPage].Count; i++) {
                 string ipAddress = splittedEndPoints[currentPage][i];
-                //joinRoomButtons[i].button.gameObject.SetActive(true);
-                //joinRoomButtons[i].buttonText.text = ipAddress;
-                //joinRoomButtons[i].button.OnClicked.AddListener(() => {
-                //JoinServer(ipAddress);
-                //PanelActivation(roomPanel, false);
-                //});
-                //PanelActivation(roomPanel);
             }
         }
     }
@@ -169,25 +160,8 @@ public class Login : ManagerBaseScript {
         InstanceFinder.ClientManager.StartConnection(ipAddress, port);
         networkDiscovery.isIpButtonPressed = true;
         networkDiscovery.StopSearchingOrAdvertising();
-        managerControl.AssignGameMode(GamePlayType.Multiplayer);
+        managersControl.AssignGameMode(GamePlayType.Multiplayer);
+        qrCodeManager.StartQRTracking();
     }
     #endregion
-
-    //private List<List<string>> ListSplit(List<string> itemList) {
-    //    if (itemList.Count <= 0) return null;
-    //    int numberOfGroups = itemList.Count / joinRoomButtons.Length;
-    //    List<List<string>> itemsData = new List<List<string>>();
-    //    for (int i = 0; i < numberOfGroups; i++) {
-    //        int startIndex = i * joinRoomButtons.Length;
-    //        List<string> group = itemList.GetRange(startIndex, joinRoomButtons.Length);
-    //        itemsData.Add(group);
-    //    }
-    //    if (itemList.Count % joinRoomButtons.Length != 0) {
-    //        int startIndex = numberOfGroups * joinRoomButtons.Length;
-    //        int remainingItems = itemList.Count - startIndex;
-    //        List<string> remainingGroup = itemList.GetRange(startIndex, remainingItems);
-    //        itemsData.Add(remainingGroup);
-    //    }
-    //    return itemsData;
-    //}
 }

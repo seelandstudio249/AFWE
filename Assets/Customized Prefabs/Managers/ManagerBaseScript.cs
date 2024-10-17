@@ -19,16 +19,13 @@ public class ManagerBaseScript : MonoBehaviour {
     protected virtual void Awake() {
         ManagerActivation(false);
         AssignGameMode += AssignGamePlayType;
-        AssignGameMode += delegate {
-            ManagerActivation(true);
-        };
     }
 
     protected virtual void AssignGamePlayType(GamePlayType gameMode) {
         this.gameMode = gameMode;
     }
 
-    void ManagerActivation(bool status) {
+    protected void ManagerActivation(bool status) {
         if (managerUI) managerUI.SetActive(status);
     }
 }

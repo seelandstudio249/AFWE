@@ -13,12 +13,12 @@ public class QRCodesSetup : MonoBehaviour {
     QRCodesManager qrCodesManager = null;
 
     void Awake() {
-        qrCodesManager = QRCodesManager.Instance;
-        if (AutoStartQRTracking) {
-            qrCodesManager.StartQRTracking();
-        }
-        if (VisualizeQRCodes) {
-            gameObject.AddComponent(typeof(QRCodesVisualizer));
-        }
+        //qrCodesManager = QRCodesManager.Instance;
+        //if (AutoStartQRTracking) {
+        //qrCodesManager.StartQRTracking();
+        //}
+        //if (VisualizeQRCodes) {
+        //gameObject.AddComponent(typeof(QRCodesVisualizer));
+        //}
     }
 }
