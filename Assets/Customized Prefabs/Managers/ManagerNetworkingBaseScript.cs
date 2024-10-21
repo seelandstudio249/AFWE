@@ -14,7 +14,8 @@ public enum PlayerType {
 
     MT,
     E,
-    FO
+    FO,
+    Editor
 }
 
 [Serializable]
