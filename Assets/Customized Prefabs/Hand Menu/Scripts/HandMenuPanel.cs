@@ -4,43 +4,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandMenuPanel : MonoBehaviour {
-    [Serializable]
-    public class PanelDetails {
-        public MRButtonClass mrButton;
-        public GameObject panel;
-    }
+public class HandMenuPanel : ManagerBaseScript {
+    [SerializeField] MRButtonClass scanQRButton, enterEditModeButton;
 
     PalmUpChecker palmStatus;
     HandConstraintPalmUp mrtkPalmUp;
-    [SerializeField] PanelDetails[] panels;
+    [SerializeField] ManagersControl managerControlScript;
+    QRCodesManager qrCodesManager;
 
-    private void Awake() {
+    protected override void Awake() {
+        base.Awake();
+        qrCodesManager = managerControlScript.GetSpecificManagerScript<QRCodesManager>();
         palmStatus = GetComponent<PalmUpChecker>();
         mrtkPalmUp = GetComponent<HandConstraintPalmUp>();
-        foreach (PanelDetails panel in panels) {
-            panel.mrButton.button.OnClicked.AddListener(delegate {
-                DeactivateAllPanels();
-                ActivatePanel(panel.panel);
-            });
-        }
-        mrtkPalmUp.OnLastHandLost.AddListener(delegate {
-            DeactivateAllPanels();
+		mrtkPalmUp.enabled = false;
+		scanQRButton.button.OnClicked.AddListener(delegate {
+            if (scanQRButton.buttonText.text == "Scan QR") {
+                scanQRButton.buttonText.text = "Stop Scanning";
+                qrCodesManager.StopQRTracking();
+            } else {
+                scanQRButton.buttonText.text = "Scan QR";
+                qrCodesManager.StartQRTracking();
+            }
+        });
+        enterEditModeButton.button.OnClicked.AddListener(delegate {
+            if (enterEditModeButton.buttonText.text == "Enter Edit Mode") {
+                enterEditModeButton.buttonText.text = "Exit Edit Mode";
+            } else {
+                enterEditModeButton.buttonText.text = "Enter Edit Mode";
+            }
         });
     }
 
-    void ActivatePanel(GameObject panel) {
-        panel.SetActive(true);
-        if (palmStatus.leftHandUp) {
-            panel.transform.localPosition = new Vector3(0.1f,0,0);
-        } else if (palmStatus.rightHandUp) {
-            panel.transform.localPosition = new Vector3(-0.1f,0,0);
-        }
-    }
-    
-    void DeactivateAllPanels() {
-        foreach (PanelDetails panel in panels) {
-            panel.panel.SetActive(false);
-        }
-    }
+	protected override void AssignGamePlayType(GamePlayType gameMode) {
+		base.AssignGamePlayType(gameMode);
+        mrtkPalmUp.enabled = true;
+	}
 }

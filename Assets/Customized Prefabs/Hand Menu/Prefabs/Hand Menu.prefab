@@ -1136,7 +1136,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0, y: 0, z: 26.38652}
+  m_Size: {x: 32, y: 32, z: 26.38652}
   m_Center: {x: 0, y: 0, z: 4.6067348}
 --- !u!114 &7025186820447018126
 MonoBehaviour:
@@ -2113,7 +2113,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0, y: 0, z: 26.38652}
+  m_Size: {x: 32, y: 32, z: 26.38652}
   m_Center: {x: 0, y: 0, z: 4.6067348}
 --- !u!114 &8879341398031499449
 MonoBehaviour:
@@ -5925,7 +5925,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0, y: 0, z: 26.38652}
+  m_Size: {x: 32, y: 32, z: 26.38652}
   m_Center: {x: 0, y: 0, z: 4.6067348}
 --- !u!114 &8589536966644260995
 MonoBehaviour:
@@ -8108,7 +8108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3979878117205914468
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8644,7 +8644,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0, y: 0, z: 26.38652}
+  m_Size: {x: 32, y: 32, z: 26.38652}
   m_Center: {x: 0, y: 0, z: 4.6067348}
 --- !u!114 &238699856163044617
 MonoBehaviour:
