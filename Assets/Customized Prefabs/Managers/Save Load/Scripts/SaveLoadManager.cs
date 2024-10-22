@@ -10,7 +10,7 @@ public class SaveLoadManager : ManagerBaseScript {
 	string streamingPath = "";
 
 	[Header("Spawned Objects Holder")]
-	[SerializeField] GameObject spawnedObjectsHolder;
+	public GameObject spawnedObjectsHolder;
 	[SerializeField] List<GameObject> spawnableObjects;
 
 	void Start() {

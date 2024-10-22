@@ -51,10 +51,10 @@ public class SaveLoadManagerNetworking : ManagerNetworkingBaseScript {
     }
     #endregion
 
-    [ServerRpc(RequireOwnership = false)]
+    //[ServerRpc(RequireOwnership = false)]
     public void SpawnObject(GameObject obj, ObjectData objData) {
-        GameObject spawnedObj = Instantiate(obj);
-        InstanceFinder.ServerManager.Spawn(spawnedObj);
+        GameObject spawnedObj = Instantiate(obj, ((SaveLoadManager)managerScript).spawnedObjectsHolder.transform);
+        //InstanceFinder.ServerManager.Spawn(spawnedObj);
         spawnedObj.transform.localPosition = objData.position;
         spawnedObj.transform.localRotation = objData.rotation;
     }
