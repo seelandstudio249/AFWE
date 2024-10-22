@@ -28,7 +28,14 @@ public class HomePage : ManagerBaseScript {
     [SerializeField] MRButtonClass confirmButton;
     #endregion
 
-    [SerializeField] ManagersControl managerControlScript;
+    #region Equipment Page
+    [Header("Equipment Page Settings")]
+	[SerializeField] GameObject equipmentPagePanel;
+	[SerializeField] MRButtonClass returnFromEquipmentPageButton;
+	[SerializeField] MRButtonClass confirmEquipmentButton;
+	#endregion
+
+	[SerializeField] ManagersControl managerControlScript;
 
     protected override void Awake() {
         base.Awake();
@@ -68,7 +75,15 @@ public class HomePage : ManagerBaseScript {
         returnFromSpecificTaskButton.button.OnClicked.AddListener(delegate {
             PanelActivation(taskPanel);
         });
-    }
+
+        confirmEquipmentButton.button.OnClicked.AddListener(delegate {
+            PanelActivation(null);
+        });
+
+        returnFromEquipmentPageButton.button.OnClicked.AddListener(delegate {
+            PanelActivation(null);
+        });
+	}
 
     void PanelActivation(GameObject TargetPanel) {
         homePanel.SetActive(false);
