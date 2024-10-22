@@ -46,12 +46,6 @@ public class QRCodesManager : ManagerBaseScript {
     private System.Threading.Tasks.Task<QRCodeWatcherAccessStatus> capabilityTask;
 
     #region Brandon Custom Behavior
-    #region UI
-    [Header("UI")]
-    [SerializeField] MRButtonClass startScanningButton;
-    [SerializeField] MRButtonClass stopScanningButton;
-    #endregion
-
     public GameObject qrScannerIndicatorPrefab;
     private GameObject qrCodeScanner;
     public string qrCodeString;
@@ -79,14 +73,6 @@ public class QRCodesManager : ManagerBaseScript {
     }
     protected override void Awake() {
         base.Awake();
-
-        startScanningButton.button.OnClicked.AddListener(delegate {
-            StartQRTracking();
-        });
-
-        stopScanningButton.button.OnClicked.AddListener(delegate {
-            StopQRTracking();
-        });
     }
 
     // Use this for initialization
