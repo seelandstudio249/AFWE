@@ -8,13 +8,15 @@ using UnityEngine;
 public class SaveLoadManagerNetworking : ManagerNetworkingBaseScript {
     public override void OnStartClient() {
         base.OnStartClient();
-        RequestGettingRoomList();
+		((SaveLoadManager)managerScript).SetPaths();
+		RequestGettingRoomList();
     }
 
 
     public override void OnStartServer() {
         base.OnStartServer();
-        ((SaveLoadManager)managerScript).LoadAllRoomsData();
+        ((SaveLoadManager)managerScript).SetPaths();
+		((SaveLoadManager)managerScript).LoadAllRoomsData();
     }
 
     #region Network Request Existing Rooms

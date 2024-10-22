@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -12,18 +13,8 @@ public class SaveLoadManager : ManagerBaseScript {
 	[SerializeField] GameObject spawnedObjectsHolder;
 	[SerializeField] List<GameObject> spawnableObjects;
 
-	#region UI
-	[Header("UI")]
-	[SerializeField] MRButtonClass saveButton;
-	#endregion
-
 	void Start() {
-		SetPaths();
 		EnsureStreamingAssetsFolderExists();
-
-		saveButton.button.OnClicked.AddListener(delegate {
-			((SaveLoadManagerNetworking)networkingScript).SaveDataServerRpc(SaveCurrentRoomData());
-		});
 	}
 
 	#region Save Data
@@ -37,6 +28,10 @@ public class SaveLoadManager : ManagerBaseScript {
 		}
 		roomData.objects = roomObjectsData;
 		return roomData;
+	}
+
+	public void SaveDataToServer() {
+		((SaveLoadManagerNetworking)networkingScript).SaveDataServerRpc(SaveCurrentRoomData());
 	}
 
 	public async Task SaveData(RoomData roomData) {
@@ -64,10 +59,12 @@ public class SaveLoadManager : ManagerBaseScript {
 		if (File.Exists(loadPath)) {
 			string json = File.ReadAllText(loadPath);
 			roomData = JsonUtility.FromJson<RoomData>(json);
+			//roomData = JsonConvert.DeserializeObject<RoomData>(json);
+			//Debug.LogError(roomData);
 		}
 	}
 
-	private void SetPaths() {
+	public void SetPaths() {
 		streamingPath = Path.Combine(Application.streamingAssetsPath, "SaveData.json");
 	}
 
