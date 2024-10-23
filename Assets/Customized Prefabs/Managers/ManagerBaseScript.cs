@@ -28,7 +28,7 @@ public class ManagerBaseScript : MonoBehaviour {
         this.gameMode = gameMode;
     }
 
-    protected void ManagerActivation(bool status) {
+    public void ManagerActivation(bool status) {
         if (managerUI) managerUI.SetActive(status);
     }
 

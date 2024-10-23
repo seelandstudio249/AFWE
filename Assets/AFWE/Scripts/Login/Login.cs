@@ -107,11 +107,13 @@ public class Login : ManagerBaseScript {
 
 	#region Mode Selection
 	void InitialSetup() {
-		if (isServer) {
-			StartServer();
-		} else {
-			SearchServer();
-		}
+		//if (isServer) {
+		//	StartServer();
+		//} else {
+		//	SearchServer();
+		//}
+		gameModeLocal = GamePlayType.Singleplayer;
+		qrCodeManager.StartQRTracking();
 	}
 
 	void StartServer() {

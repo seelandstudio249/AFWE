@@ -128,7 +128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3083822488172613892
 RectTransform:
   m_ObjectHideFlags: 0
@@ -607,7 +607,7 @@ GameObject:
   - component: {fileID: 6763574255404036073}
   - component: {fileID: 7374590485745620910}
   m_Layer: 5
-  m_Name: Task Item
+  m_Name: E Task Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -953,8 +953,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 160, y: 0, z: 26.38652}
-  m_Center: {x: 9, y: 0, z: 4.6067348}
+  m_Size: {x: 0, y: 0, z: 26.38652}
+  m_Center: {x: 0, y: 0, z: 4.6067348}
 --- !u!114 &9143220265279368945
 MonoBehaviour:
   m_ObjectHideFlags: 0
