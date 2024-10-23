@@ -91,4 +91,9 @@ public class HazardDetectionManager : ManagerBaseScript
 			notificationsList[i].title.text = sampleNotification[sampleNotification.Count - 1 - i];
 		}
 	}
+
+	protected override void AfterLoginFunction() {
+		base.AfterLoginFunction();
+		ManagerActivation(true);
+	}
 }

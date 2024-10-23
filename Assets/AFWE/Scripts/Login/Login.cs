@@ -73,21 +73,25 @@ public class Login : ManagerBaseScript {
 				playerType = PlayerType.MT;
 				showHomePageUserDetails.Invoke();
 				PanelActivation(null);
+				managersControl.AfterLogin();
 				break;
 				case "FO":
 				playerType = PlayerType.FO;
 				showHomePageUserDetails.Invoke();
 				PanelActivation(null);
+				managersControl.AfterLogin();
 				break;
 				case "E":
 				playerType = PlayerType.E;
 				showHomePageUserDetails.Invoke();
 				PanelActivation(null);
+				managersControl.AfterLogin();
 				break;
 				case "Edit":
 				playerType = PlayerType.Editor;
 				//showHomePageUserDetails.Invoke();
 				PanelActivation(null);
+				managersControl.AfterLogin();
 				break;
 				default:
 				errorText.text = "User doesn't exist";

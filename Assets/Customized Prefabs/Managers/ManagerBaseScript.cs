@@ -15,11 +15,14 @@ public class ManagerBaseScript : MonoBehaviour {
     [SerializeField] GameObject managerUI;
 
     public Action<GamePlayType> AssignGameMode;
+    public Action AfterLogin;
 
     protected virtual void Awake() {
         ManagerActivation(false);
         AssignGameMode += AssignGamePlayType;
-    }
+		AfterLogin += AfterLoginFunction;
+
+	}
 
     protected virtual void AssignGamePlayType(GamePlayType gameMode) {
         this.gameMode = gameMode;
@@ -28,4 +31,8 @@ public class ManagerBaseScript : MonoBehaviour {
     protected void ManagerActivation(bool status) {
         if (managerUI) managerUI.SetActive(status);
     }
+
+	protected virtual void AfterLoginFunction() {
+
+	}
 }

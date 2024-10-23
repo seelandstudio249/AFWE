@@ -40,8 +40,8 @@ public class HandMenuPanel : ManagerBaseScript {
         });
     }
 
-	protected override void AssignGamePlayType(GamePlayType gameMode) {
-		base.AssignGamePlayType(gameMode);
-        mrtkPalmUp.enabled = true;
+    protected override void AfterLoginFunction() {
+		mrtkPalmUp.enabled = true;
+
 	}
 }

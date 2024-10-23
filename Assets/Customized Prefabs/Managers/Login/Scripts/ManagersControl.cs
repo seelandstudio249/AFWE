@@ -13,6 +13,12 @@ public class ManagersControl : MonoBehaviour {
         }
     }
 
+    public void AfterLogin() {
+        foreach (ManagerBaseScript manager in managersList) {
+            manager.AfterLogin.Invoke();
+        }
+    }
+
     public T GetSpecificManagerScript<T>()where T : ManagerBaseScript {
         foreach (ManagerBaseScript manager in managersList) {
             if (manager is T) {
