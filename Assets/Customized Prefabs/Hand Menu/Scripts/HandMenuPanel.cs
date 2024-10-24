@@ -23,7 +23,7 @@ public class HandMenuPanel : ManagerBaseScript {
 		scanQRButton.button.OnClicked.AddListener(delegate {
             if (scanQRButton.buttonText.text == "Scan QR") {
                 scanQRButton.buttonText.text = "Stop Scanning";
-                qrCodesManager.StopQRTracking();
+                qrCodesManager.StopQRTrackingWithoutCountdown();
             } else {
                 scanQRButton.buttonText.text = "Scan QR";
                 qrCodesManager.StartQRTracking();

@@ -59,7 +59,6 @@ public class ETaskManager : MonoBehaviour {
 				mRButtonClass.buttonClass.button.OnClicked.AddListener(delegate {
 					pageManager.PanelActivation(pageManager.specificETaskPanel.specificETaskPanel);
 					pageManager.specificETaskPanel.AssignDummyDataSpecificETask(item);
-
 				});
 				break;
 				case PlayerType.FO:

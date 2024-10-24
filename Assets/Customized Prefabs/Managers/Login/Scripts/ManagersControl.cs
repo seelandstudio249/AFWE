@@ -9,13 +9,13 @@ public class ManagersControl : MonoBehaviour {
 
     public void AssignGameMode(GamePlayType gamePlayType) {
         foreach (ManagerBaseScript manager in managersList) {
-            manager.AssignGameMode.Invoke(gamePlayType);
+            manager?.AssignGameMode.Invoke(gamePlayType);
         }
     }
 
     public void AfterLogin() {
         foreach (ManagerBaseScript manager in managersList) {
-            manager.AfterLogin.Invoke();
+            manager?.AfterLogin.Invoke();
         }
     }
 

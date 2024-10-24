@@ -13,6 +13,7 @@ public class JobPackDetails {
 public class ETaskInfo {
 	public string eTaskName;
 	public bool eTaskStatus;
+	public List<string> requiredPeople = new List<string>();
 }
 
 public class JobPackPanel : MonoBehaviour {

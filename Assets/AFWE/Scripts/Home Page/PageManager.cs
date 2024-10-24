@@ -43,6 +43,6 @@ public class PageManager : ManagerBaseScript {
 		eTaskPanel.eTaskPanel.SetActive(false);
 		specificETaskPanel.specificETaskPanel.SetActive(false);
 		equipmentsPanel.equipmentPagePanel.SetActive(false);
-		TargetPanel.SetActive(true);
+		TargetPanel?.SetActive(true);
 	}
 }
