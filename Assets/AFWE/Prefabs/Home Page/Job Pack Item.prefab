@@ -607,7 +607,7 @@ GameObject:
   - component: {fileID: 6763574255404036073}
   - component: {fileID: 7374590485745620910}
   m_Layer: 5
-  m_Name: E Task Item
+  m_Name: Job Pack Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

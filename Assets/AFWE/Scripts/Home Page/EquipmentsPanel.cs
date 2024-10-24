@@ -22,7 +22,7 @@ public class EquipmentsPanel : MonoBehaviour
 
 		confirmEquipmentButton.button.OnClicked.AddListener(delegate {
 			// Need to send API
-			pageManager.PanelActivation(pageManager.specificETaskPanel.specificETaskPanel);
+			//pageManager.PanelActivation(pageManager.specificETaskPanel.specificETaskPanel);
 		});
 	}
 

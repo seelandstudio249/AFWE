@@ -25,6 +25,7 @@ public class SpecificETask : MonoBehaviour {
 			pageManager.PanelActivation(pageManager.eTaskPanel.eTaskPanel);
 			specificETaskInfo.eTaskStatus = true;
 			pageManager.eTaskPanel.UpdateSelectedETask(specificETaskInfo);
+			pageManager.eTaskPanel.UpdatePanel();
 		});
 	}
 

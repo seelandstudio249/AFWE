@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ETaskManager : MonoBehaviour {
@@ -25,6 +26,23 @@ public class ETaskManager : MonoBehaviour {
 
 	private void OnEnable() {
 		// Call API to refresh the page
+	}
+
+	public void UpdatePanel() {
+		if (selectedEtask == null) return;
+		List<MRTKCustomizedButtonScript> itemButtonsList = new List<MRTKCustomizedButtonScript>();
+		foreach (Transform child in eTaskHolder) {
+			// Get the MRTKCustomizedButtonScript component from the child, if it exists
+			MRTKCustomizedButtonScript buttonScript = child.GetComponent<MRTKCustomizedButtonScript>();
+
+			if (buttonScript != null) {
+				// Add it to the list if the component is found
+				itemButtonsList.Add(buttonScript);
+			}
+		}
+		for (int i = 0; i < selectedEtask.Count; i++) {
+			itemButtonsList[i].buttonClass.sprite.SetActive(selectedEtask[i].eTaskStatus);
+		}
 	}
 
 	public void AssignDummyJobPack(List<ETaskInfo> eTasksInfo) {
