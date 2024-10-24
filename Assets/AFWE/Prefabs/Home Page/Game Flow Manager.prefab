@@ -4478,7 +4478,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: -0}
-  m_SizeDelta: {x: 166, y: -111.32}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &9060951365720029866
 MonoBehaviour:
@@ -8572,7 +8572,7 @@ GameObject:
   - component: {fileID: 8592516668235469622}
   - component: {fileID: 7681605271178411953}
   m_Layer: 0
-  m_Name: Home Page
+  m_Name: Game Flow Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8952,7 +8952,7 @@ MonoBehaviour:
   managerControlScript: {fileID: 0}
   pinButton:
     button: {fileID: 4891608829976239736}
-    buttonText: {fileID: 0}
+    buttonText: {fileID: 779898937007757458}
 --- !u!114 &3487132845745828594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8984,7 +8984,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jobPackPanel: {fileID: 6361996997341053889}
   jobPackHolder: {fileID: 985259310390183051}
-  jobPackItemButtonPrefab: {fileID: 1658371187353982167, guid: c7ae058e67c56b846b316bc24ff94537, type: 3}
+  jobPackItemButtonPrefab: {fileID: 1658371187353982167, guid: 556e0a1639f484249ad799ecb5431114, type: 3}
   returnFromJobPackButton:
     button: {fileID: 6225317534744317211}
     buttonText: {fileID: 0}
