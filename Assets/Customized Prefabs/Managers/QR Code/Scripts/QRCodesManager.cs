@@ -25,6 +25,12 @@ public class QRCodeEventArgs<TData> : EventArgs {
     }
 }
 
+[Serializable]
+public class QRCodeTargetItem {
+    public string qrCodeString;
+    public GameObject[] targetPanel;
+}
+
 public class QRCodesManager : ManagerBaseScript {
     [Tooltip("Offset of the rotation of ContentContainer transform on top of QR code")]
     public Vector3 qrRotationOffset;
@@ -53,9 +59,11 @@ public class QRCodesManager : ManagerBaseScript {
     bool timeSet = false;
     [SerializeField] GameObject[] objsToActiveAfterScan;
     public GameObject containerGameObject;
-    #endregion
 
-    public System.Guid GetIdForQRCode(string qrCodeData) {
+    public QRCodeTargetItem[] specificItem;
+	#endregion
+
+	public System.Guid GetIdForQRCode(string qrCodeData) {
         lock (qrCodesList) {
             foreach (var ite in qrCodesList) {
                 if (ite.Value.Data == qrCodeData) {
@@ -136,10 +144,27 @@ public class QRCodesManager : ManagerBaseScript {
                 handlers(this, false);
             }
         }
-        StartCoroutine(IncreaseOverTime(5));
+        StartCoroutine(IncreaseOverTime(0.5f));
     }
 
-    private void QRCodeWatcher_Removed(object sender, QRCodeRemovedEventArgs args) {
+	public void StopQRTrackingWithoutCountdown() {
+		if (QRCodeScannerIndicator.instance == null) return;
+		QRCodeScannerIndicator.instance.ObjectActivation(QRCodeScannerIndicator.instance.loadingStatusText.gameObject, true);
+		if (IsTrackerRunning) {
+			IsTrackerRunning = false;
+			if (qrTracker != null) {
+				qrTracker.Stop();
+				qrCodesList.Clear();
+			}
+
+			var handlers = QRCodesTrackingStateChanged;
+			if (handlers != null) {
+				handlers(this, false);
+			}
+		}
+	}
+
+	private void QRCodeWatcher_Removed(object sender, QRCodeRemovedEventArgs args) {
         bool found = false;
         lock (qrCodesList) {
             if (qrCodesList.ContainsKey(args.Code.Id)) {

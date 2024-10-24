@@ -29,8 +29,18 @@ public class QRCode : MonoBehaviour {
 		int diff = DateTimeOffset.Compare(_qrCode.LastDetectedTime, qrCodesManager.startScanningTime);
 		if (_qrCode.Data.ToString() == qrCodesManager.qrCodeString) {
 			if (diff >= 0) StartCoroutine(ShowContent(_transform));
-		} else if (_qrCode.Data.ToString() == "Pump A") {
-			// Send API
+		} else {
+			foreach (var item in qrCodesManager.specificItem) {
+				if (_qrCode.Data.ToString() == item.qrCodeString) {
+					foreach (var panel in item.targetPanel) {
+						if (panel != null) {
+							panel.SetActive(true);
+						}
+					}
+					qrCodesManager.StopQRTracking();
+					break;
+				}
+			}
 		}
 	}
 
