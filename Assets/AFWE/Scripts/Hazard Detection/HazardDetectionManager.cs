@@ -59,8 +59,25 @@ public class HazardDetectionManager : ManagerBaseScript
 		});
 	}
 
+	Texture2D ResizeTexture(Texture2D source, int newWidth, int newHeight) {
+		Texture2D newTexture = new Texture2D(newWidth, newHeight, source.format, false);
+
+		for (int y = 0; y < newHeight; y++) {
+			for (int x = 0; x < newWidth; x++) {
+				// Calculate the original position
+				float u = x / (float)newWidth;
+				float v = y / (float)newHeight;
+				newTexture.SetPixel(x, y, source.GetPixelBilinear(u, v));
+			}
+		}
+
+		newTexture.Apply();
+		return newTexture;
+	}
+
 	void OnCapturedPhotoToMemory(PhotoCapture.PhotoCaptureResult result, PhotoCaptureFrame photoCaptureFrame) {
-		byte[] imageBytes = targetTexture.EncodeToJPG();
+		//Texture2D resizedTexture = ResizeTexture(targetTexture, newWidth, newHeight);
+		byte[] imageBytes = resizedTexture.EncodeToJPG();
 		string base64Image = Convert.ToBase64String(imageBytes);
 		Debug.Log("Base64 Encoded Image: " + base64Image);
 
