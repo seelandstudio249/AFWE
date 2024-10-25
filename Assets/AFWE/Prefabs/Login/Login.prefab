@@ -6104,7 +6104,7 @@ MonoBehaviour:
   networkDiscovery: {fileID: 6659997266663697030}
   port: 1228
   searchTimeout: 1
-  secret: AWFE
+  secret: SCDF
   gameModeLocal: 0
   playerType: 0
   managersControl: {fileID: 7068302585022938291}
@@ -6122,6 +6122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loginScript: {fileID: 8691023965884064049}
   managersList:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

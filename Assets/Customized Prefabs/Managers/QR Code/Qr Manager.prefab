@@ -49,10 +49,11 @@ MonoBehaviour:
   managerUI: {fileID: 0}
   qrRotationOffset: {x: 0, y: 0, z: 0}
   qrScannerIndicatorPrefab: {fileID: 345475071814671704, guid: 9d7abc22cff6c43479e5811a43649918, type: 3}
-  qrCodeString: 'AWFE '
+  qrCodeString: SCDF
   objsToActiveAfterScan:
   - {fileID: 0}
   containerGameObject: {fileID: 0}
+  haveLogin: 0
   specificItem:
   - qrCodeString: Pump 1
     targetPanel:
