@@ -10,24 +10,24 @@ public class HandMenuPanel : ManagerBaseScript {
     PalmUpChecker palmStatus;
     HandConstraintPalmUp mrtkPalmUp;
     [SerializeField] ManagersControl managerControlScript;
-    QRCodesManager qrCodesManager;
+    //QRCodesManager qrCodesManager;
     SaveLoadManager saveLoadManager;
 
     protected override void Awake() {
-        base.Awake();
-        qrCodesManager = managerControlScript.GetSpecificManagerScript<QRCodesManager>();
+        //base.Awake();
+        //qrCodesManager = managerControlScript.GetSpecificManagerScript<QRCodesManager>();
 		saveLoadManager = managerControlScript.GetSpecificManagerScript<SaveLoadManager>();
 		palmStatus = GetComponent<PalmUpChecker>();
         mrtkPalmUp = GetComponent<HandConstraintPalmUp>();
-		mrtkPalmUp.enabled = false;
+		//mrtkPalmUp.enabled = false;
 		scanQRButton.button.OnClicked.AddListener(delegate {
             if (scanQRButton.buttonText.text == "Scan QR") {
                 scanQRButton.buttonText.text = "Stop Scanning";
-                qrCodesManager.StopQRTrackingWithoutCountdown();
+				QRCodesManager.instance.StartQRTracking();
             } else {
                 scanQRButton.buttonText.text = "Scan QR";
-                qrCodesManager.StartQRTracking();
-            }
+				QRCodesManager.instance.StopQRTrackingWithoutCountdown();
+			}
         });
         enterEditModeButton.button.OnClicked.AddListener(delegate {
             if (enterEditModeButton.buttonText.text == "Enter Edit Mode") {

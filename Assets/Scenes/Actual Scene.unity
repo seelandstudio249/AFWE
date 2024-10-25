@@ -2008,6 +2008,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Login
       objectReference: {fileID: 0}
+    - target: {fileID: 8691023965884064049, guid: c625e6a3a8f316c46af2366ae21c1208, type: 3}
+      propertyPath: secret
+      value: SCDF
+      objectReference: {fileID: 0}
     - target: {fileID: 8740630432340602670, guid: c625e6a3a8f316c46af2366ae21c1208, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

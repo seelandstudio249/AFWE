@@ -59,7 +59,7 @@ public class QRCodesManager : ManagerBaseScript {
     bool timeSet = false;
     [SerializeField] GameObject[] objsToActiveAfterScan;
     public GameObject containerGameObject;
-
+    public bool haveLogin = false;
     public QRCodeTargetItem[] specificItem;
 
     public static QRCodesManager instance;

@@ -20,22 +20,25 @@ public class QRCode : MonoBehaviour {
 	public void CompareQRCode(Microsoft.MixedReality.QR.QRCode _qrCode, Transform _transform) {
 		int diff = DateTimeOffset.Compare(_qrCode.LastDetectedTime, QRCodesManager.instance.startScanningTime);
 		if (diff >= 0) {
+			//if (!QRCodesManager.instance.haveLogin) {
 			if (_qrCode.Data.ToString() == QRCodesManager.instance.qrCodeString) {
 				StartCoroutine(ShowContent(_transform));
-			} 
-			//else {
-			//	foreach (var item in QRCodesManager.instance.specificItem) {
-			//		if (_qrCode.Data.ToString() == item.qrCodeString) {
-			//			foreach (var panel in item.targetPanel) {
-			//				if (panel != null) {
-			//					panel.SetActive(true);
-			//				}
-			//			}
-			//			QRCodesManager.instance.StopQRTracking();
-			//			break;
-			//		}
-			//	}
-			//}
+				QRCodesManager.instance.haveLogin = true;
+			}
+		 //}
+		 else {
+				foreach (var item in QRCodesManager.instance.specificItem) {
+					if (_qrCode.Data.ToString() == item.qrCodeString) {
+						foreach (var panel in item.targetPanel) {
+							if (panel != null) {
+								panel.SetActive(true);
+							}
+						}
+						QRCodesManager.instance.StopQRTrackingWithoutCountdown();
+						break;
+					}
+				}
+			}
 		}
 	}
 
