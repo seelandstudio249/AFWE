@@ -54,15 +54,12 @@ public class Login : ManagerBaseScript {
 	public PlayerType playerType;
 
 	[SerializeField] ManagersControl managersControl;
-	QRCodesManager qrCodeManager;
 
 	#region Login Actions
 	public Action showHomePageUserDetails;
 	#endregion
 
 	protected override void Awake() {
-		qrCodeManager = managersControl.GetSpecificManagerScript<QRCodesManager>();
-
 		networkDiscovery.ServerFoundCallback += AddingEndPoint;
 		loginButton.button.OnClicked.AddListener(delegate {
 			errorText.text = "";
@@ -89,7 +86,6 @@ public class Login : ManagerBaseScript {
 				break;
 				case "Edit":
 				playerType = PlayerType.Editor;
-				//showHomePageUserDetails.Invoke();
 				PanelActivation(null);
 				managersControl.AfterLogin();
 				break;
@@ -113,7 +109,6 @@ public class Login : ManagerBaseScript {
 		//	SearchServer();
 		//}
 		gameModeLocal = GamePlayType.Singleplayer;
-		qrCodeManager.StartQRTracking();
 	}
 
 	void StartServer() {
@@ -170,7 +165,7 @@ public class Login : ManagerBaseScript {
 		networkDiscovery.isIpButtonPressed = true;
 		networkDiscovery.StopSearchingOrAdvertising();
 		managersControl.AssignGameMode(GamePlayType.Multiplayer);
-		qrCodeManager.StartQRTracking();
+		QRCodesManager.instance.StartQRTracking();
 	}
 	#endregion
 }

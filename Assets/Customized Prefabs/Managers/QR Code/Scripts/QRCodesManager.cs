@@ -61,6 +61,8 @@ public class QRCodesManager : ManagerBaseScript {
     public GameObject containerGameObject;
 
     public QRCodeTargetItem[] specificItem;
+
+    public static QRCodesManager instance;
 	#endregion
 
 	public System.Guid GetIdForQRCode(string qrCodeData) {
@@ -81,7 +83,8 @@ public class QRCodesManager : ManagerBaseScript {
     }
     protected override void Awake() {
         base.Awake();
-    }
+		instance = this;
+	}
 
     // Use this for initialization
     async protected virtual void Start() {
@@ -89,6 +92,12 @@ public class QRCodesManager : ManagerBaseScript {
         capabilityTask = QRCodeWatcher.RequestAccessAsync();
         accessStatus = await capabilityTask;
         capabilityInitialized = true;
+        StartCoroutine(PrepareToStartScanning());
+    }
+
+    IEnumerator PrepareToStartScanning() {
+        yield return new WaitForSeconds(1.5f);
+        StartQRTracking();
     }
 
     private void SetupQRTracking() {
@@ -162,6 +171,8 @@ public class QRCodesManager : ManagerBaseScript {
 				handlers(this, false);
 			}
 		}
+		QRCodeScannerIndicator.instance.ObjectActivation(QRCodeScannerIndicator.instance.loadingStatusText.gameObject, false);
+		QRCodeScannerIndicator.instance.ObjectActivation(QRCodeScannerIndicator.instance.spriteIndicator.gameObject, false);
 	}
 
 	private void QRCodeWatcher_Removed(object sender, QRCodeRemovedEventArgs args) {
