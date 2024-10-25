@@ -69,6 +69,7 @@ public class JobPackPanel : MonoBehaviour {
 			mRButtonClass.buttonClass.button.OnClicked.AddListener(delegate {
 				pageManager.PanelActivation(pageManager.eTaskPanel.eTaskPanel);
 				pageManager.eTaskPanel.AssignDummyJobPack(item.jobPackItems);
+				pageManager.eTaskPanel.UpdatePanel();
 			});
 		}
 	}

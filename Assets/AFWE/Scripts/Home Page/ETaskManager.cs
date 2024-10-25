@@ -16,16 +16,32 @@ public class ETaskManager : MonoBehaviour {
 	List<ETaskInfo> selectedEtask = new List<ETaskInfo>();
 
 	PageManager pageManager;
+
+	#region Object Pooling 
+	private Queue<GameObject> pool = new Queue<GameObject>();
+
+	public GameObject GetButton() {
+		if (pool.Count > 0) {
+			GameObject pooledButton = pool.Dequeue();
+			pooledButton.SetActive(true);
+			return pooledButton;
+		} else {
+			// Instantiate a new button if the pool is empty
+			return Instantiate(eTaskItemButtonPrefab, eTaskHolder);
+		}
+	}
+
+	public void ReturnButton(GameObject button) {
+		button.SetActive(false);
+		pool.Enqueue(button);
+	}
+	#endregion
 	private void Awake() {
 		pageManager = GetComponent<PageManager>();
 
 		returnFromETaskButton.button.OnClicked.AddListener(delegate {
 			pageManager.PanelActivation(pageManager.jobPackPanel.jobPackPanel);
 		});
-	}
-
-	private void OnEnable() {
-		// Call API to refresh the page
 	}
 
 	public void UpdatePanel() {
@@ -47,27 +63,39 @@ public class ETaskManager : MonoBehaviour {
 
 	public void AssignDummyJobPack(List<ETaskInfo> eTasksInfo) {
 		selectedEtask = eTasksInfo;
-		// Spawn button prefab based on job packs data
+
+		// Clear existing buttons by returning them to the pool
+		foreach (Transform child in eTaskHolder) {
+			GameObject pooledButton = child.gameObject;
+			ReturnButton(pooledButton);  // Return to pool
+		}
+
+		// Spawn or reuse button prefab from pool based on job packs data
 		foreach (ETaskInfo item in eTasksInfo) {
-			GameObject button = Instantiate(eTaskItemButtonPrefab, eTaskHolder);
+			GameObject button = GetButton();  // Get from pool or instantiate if necessary
 			MRTKCustomizedButtonScript mRButtonClass = button.GetComponent<MRTKCustomizedButtonScript>();
 			mRButtonClass.buttonClass.buttonText.text = item.eTaskName;
 
+			// Remove previous listeners to avoid duplicating them
+			mRButtonClass.buttonClass.button.OnClicked.RemoveAllListeners();
+
+			// Assign button functionality based on player type
 			switch (pageManager.managerControlScript.loginScript.playerType) {
 				case PlayerType.MT:
-				// Button item on click open up E Task panel
 				mRButtonClass.buttonClass.button.OnClicked.AddListener(delegate {
 					pageManager.PanelActivation(pageManager.specificETaskPanel.specificETaskPanel);
 					pageManager.specificETaskPanel.AssignDummyDataSpecificETask(item);
 				});
 				break;
+
 				case PlayerType.FO:
 				mRButtonClass.buttonClass.button.OnClicked.AddListener(delegate {
 					pageManager.PanelActivation(pageManager.equipmentsPanel.equipmentPagePanel);
 				});
 				break;
-				case PlayerType.E:
 
+				case PlayerType.E:
+				// Add E player-specific functionality here if needed
 				break;
 			}
 		}
