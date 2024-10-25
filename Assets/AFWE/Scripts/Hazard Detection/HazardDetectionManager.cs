@@ -77,7 +77,8 @@ public class HazardDetectionManager : ManagerBaseScript
 
 	void OnCapturedPhotoToMemory(PhotoCapture.PhotoCaptureResult result, PhotoCaptureFrame photoCaptureFrame) {
 		//Texture2D resizedTexture = ResizeTexture(targetTexture, newWidth, newHeight);
-		byte[] imageBytes = resizedTexture.EncodeToJPG();
+		//byte[] imageBytes = resizedTexture.EncodeToJPG();
+		byte[] imageBytes = targetTexture.EncodeToJPG();
 		string base64Image = Convert.ToBase64String(imageBytes);
 		Debug.Log("Base64 Encoded Image: " + base64Image);
 

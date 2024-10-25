@@ -23,19 +23,20 @@ public class ObjectData {
     public Vector3 position;
     public Quaternion rotation;
     public Vector3 size;
-    public int ObjectIndex;
+    //public int ObjectIndex;
 
     public ObjectData() {
         position = Vector3.zero;
         rotation = Quaternion.identity;
         size = Vector3.one;
-        ObjectIndex = -1;
+        //ObjectIndex = -1;
     }
 
-    public ObjectData(Vector3 pos, Quaternion rot, Vector3 scale, int index) {
-        position = pos;
+    //public ObjectData(Vector3 pos, Quaternion rot, Vector3 scale, int index) {
+    public ObjectData(Vector3 pos, Quaternion rot, Vector3 scale) {
+			position = pos;
         rotation = rot;
         size = scale;
-        ObjectIndex = index;
+        //ObjectIndex = index;
     }
 }

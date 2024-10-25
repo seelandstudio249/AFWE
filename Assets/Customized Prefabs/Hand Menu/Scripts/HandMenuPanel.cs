@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class HandMenuPanel : ManagerBaseScript {
     [SerializeField] MRButtonClass scanQRButton, enterEditModeButton;
+    [SerializeField] EditManager editManager;
 
     PalmUpChecker palmStatus;
     HandConstraintPalmUp mrtkPalmUp;
@@ -30,12 +31,13 @@ public class HandMenuPanel : ManagerBaseScript {
         enterEditModeButton.button.OnClicked.AddListener(delegate {
             if (enterEditModeButton.buttonText.text == "Enter Edit Mode") {
                 enterEditModeButton.buttonText.text = "Exit Edit Mode";
-                saveLoadManager.SaveDataToServer();
-
+                editManager.EnterEditMode();
 			} else {
                 enterEditModeButton.buttonText.text = "Enter Edit Mode";
-            }
-        });
+				saveLoadManager.SaveDataToServer();
+                editManager.ExitEditMode();
+			}
+		});
     }
 
     protected override void AfterLoginFunction() {
