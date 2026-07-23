@@ -33,7 +33,7 @@ public static class JsonHelperClasses
 
     
  
-    public static MessageBase FromJsonErrorBase ( string json )
+    public static MessageBase FromJsonMessageBase( string json )
     {
         MessageBase messageBase = JsonUtility.FromJson<MessageBase> ( json );
         return messageBase;
@@ -50,7 +50,7 @@ public static class JsonHelperClasses
 [Serializable]
 public class MessageBase
 {
-    public int error;
+    public int statusCode;
     public string msg;
 }
 

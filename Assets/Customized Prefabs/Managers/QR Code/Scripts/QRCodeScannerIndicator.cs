@@ -9,14 +9,17 @@ public class QRCodeScannerIndicator : MonoBehaviour
 
     public GameObject spriteIndicator;
     public TMP_Text loadingStatusText;
+    public TMP_Text hintText;
 
     private void Awake() {
         if (instance == null) {
             instance = this;
         }
-    }
+	}
 
-    public void ObjectActivation(GameObject obj, bool isActive) {
+	public void ObjectActivation(GameObject obj, bool isActive) {
         obj.SetActive(isActive);
     }
+
+
 }

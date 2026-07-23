@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - areaCam
+  - ExperimentalDynamicFrontplate
   layers:
   - Default
   - TransparentFX
@@ -11,6 +13,7 @@ TagManager:
   - 
   - Water
   - UI
+  - Rubbermat
   - 
   - 
   - 
@@ -35,8 +38,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Spatial Mesh
   m_SortingLayers:
   - name: Default
     uniqueID: 0

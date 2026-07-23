@@ -6,6 +6,7 @@ public class ManagersControl : MonoBehaviour {
     public Login loginScript;
 
     [SerializeField] List<ManagerBaseScript> managersList;
+    public PageManager pageManager;
 
     public void AssignGameMode(GamePlayType gamePlayType) {
         foreach (ManagerBaseScript manager in managersList) {

@@ -48,7 +48,7 @@ public class PalmUpChecker : MonoBehaviour
             // Check if the palm is facing up (towards the camera)
             if (palmCameraAngle < facingCameraTrackingThreshold) {
                 if (IsPalmMeetingThresholdRequirements(hand, palmPose, palmCameraAngle)) {
-                    Debug.Log($"{hand} hand's palm is facing up.");
+                   //Debug.Log($"{hand} hand's palm is facing up.");
                     return true;
                 }
             }
